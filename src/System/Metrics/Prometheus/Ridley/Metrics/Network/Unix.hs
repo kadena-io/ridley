@@ -7,6 +7,7 @@ module System.Metrics.Prometheus.Ridley.Metrics.Network.Unix
   , mkInterfaceGauge
   ) where
 
+import           Control.Applicative
 import           Control.Monad
 import           Control.Monad.IO.Class
 import qualified Data.Map.Strict as M
@@ -77,7 +78,7 @@ networkMetrics g = RidleyMetricHandler {
   }
 
 --------------------------------------------------------------------------------
-mkInterfaceGauge :: MonadIO m => P.Labels -> NetworkMetrics -> IfData -> P.RegistryT m NetworkMetrics
+mkInterfaceGauge :: (Functor m,MonadIO m) => P.Labels -> NetworkMetrics -> IfData -> P.RegistryT m NetworkMetrics
 mkInterfaceGauge currentLabels imap d@IfData{..} = do
   let iname = T.pack ifi_name
   let finalLabels = P.addLabel "interface" iname currentLabels

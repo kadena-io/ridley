@@ -26,11 +26,13 @@ module System.Metrics.Prometheus.Ridley.Types (
   , runHandler
   ) where
 
+import           Control.Applicative
 import           Control.Concurrent (ThreadId)
 import           Control.Monad.IO.Class
 import           Control.Monad.Reader (MonadReader)
 import           Control.Monad.Trans.Class
 import           Control.Monad.Trans.Reader
+import           Data.Monoid
 import qualified Data.Set as Set
 import qualified Data.Text as T
 import           Data.Time

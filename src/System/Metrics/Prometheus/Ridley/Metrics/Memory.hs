@@ -3,6 +3,7 @@ module System.Metrics.Prometheus.Ridley.Metrics.Memory (
     processMemory
   ) where
 
+import           Control.Applicative
 import qualified System.Metrics.Prometheus.Metric.Gauge as P
 import           System.Metrics.Prometheus.Ridley.Types
 import           System.Posix.Process

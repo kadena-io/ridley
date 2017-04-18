@@ -8,6 +8,7 @@ module System.Metrics.Prometheus.Ridley.Metrics.DiskUsage (
   , diskUsageMetrics
   ) where
 
+import           Control.Applicative
 import           Control.Monad
 import           Control.Monad.IO.Class
 import qualified Data.Map.Strict as M
@@ -91,7 +92,7 @@ diskUsageMetrics g = RidleyMetricHandler {
   }
 
 --------------------------------------------------------------------------------
-mkDiskGauge :: MonadIO m => P.Labels -> DiskUsageMetrics -> DiskStats -> P.RegistryT m DiskUsageMetrics
+mkDiskGauge :: (Functor m,MonadIO m) => P.Labels -> DiskUsageMetrics -> DiskStats -> P.RegistryT m DiskUsageMetrics
 mkDiskGauge currentLabels dmap d = do
   let fs = d ^. diskFilesystem
   let finalLabels = P.addLabel "filesystem" fs currentLabels

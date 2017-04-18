@@ -22,6 +22,7 @@ module System.Metrics.Prometheus.Ridley (
   , defaultMetrics
   ) where
 
+import           Control.Applicative
 import           Control.Concurrent (threadDelay, forkIO)
 import           Control.Concurrent.Async
 import           Control.Concurrent.MVar
